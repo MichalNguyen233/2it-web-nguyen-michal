@@ -1,0 +1,88 @@
+/* Reset & základ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #121212;
+  color: #E0E0E0;
+  line-height: 1.6;
+}
+
+/* Sekce */
+section {
+  padding: 100px 20px;
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Hero */
+#hero h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  color: #1DB954;
+}
+
+#hero p {
+  font-size: 1.2rem;
+  color: #E0E0E0;
+}
+
+/* Nadpisy */
+h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #1DB954;
+}
+
+/* Skills */
+.skills-list {
+  list-style: none;
+}
+
+.skills-list li {
+  margin: 10px 0;
+  font-size: 1.1rem;
+}
+
+/* Projekty */
+.project-card {
+  background-color: #1E1E1E;
+  padding: 20px;
+  margin: 15px auto;
+  border-radius: 10px;
+  max-width: 600px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(29, 185, 84, 0.4);
+}
+
+/* Kontakt */
+#contact a {
+  color: #1DB954;
+  text-decoration: none;
+}
+
+#contact a:hover {
+  text-decoration: underline;
+}
+
+/* Responzivita */
+@media (max-width: 768px) {
+  #hero h1 {
+    font-size: 2.2rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  section {
+    padding: 70px 15px;
+  }
+}
