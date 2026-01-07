@@ -5,7 +5,6 @@
   box-sizing: border-box;
 }
 
-/* TĚLO */
 body {
   font-family: 'Poppins', sans-serif;
   background:
@@ -14,39 +13,23 @@ body {
     linear-gradient(180deg, #0f0f0f, #121212);
   color: #e0e0e0;
   overflow-x: hidden;
+  position: relative;
 }
 
 /* POHYBLIVÉ BUBLINY */
-body::before,
-body::after {
-  content: "";
+.bubble {
   position: fixed;
   width: 450px;
   height: 450px;
   background: rgba(29,185,84,0.18);
   filter: blur(140px);
   z-index: -1;
+  border-radius: 50%;
+  transition: transform 0.2s ease-out;
 }
 
-body::before {
-  top: -120px;
-  left: -120px;
-  animation: drift-left 25s ease-in-out infinite alternate;
-}
-
-body::after {
-  bottom: -120px;
-  right: -120px;
-  animation: drift-right 30s ease-in-out infinite alternate;
-}
-
-@keyframes drift-left {
-  to { transform: translate(140px, 80px); }
-}
-
-@keyframes drift-right {
-  to { transform: translate(-160px, -120px); }
-}
+.bubble-left { top: -120px; left: -120px; }
+.bubble-right { bottom: -120px; right: -120px; }
 
 /* CANVAS */
 #draw-canvas {
@@ -71,6 +54,7 @@ section {
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
+/* Hover efekt pro všechny sekce */
 section:hover {
   transform: translateY(-6px) scale(1.01);
 }
@@ -163,12 +147,11 @@ a:hover {
   text-decoration: underline;
 }
 
-/* SPODNÍ SEKCE – vznášející se efekt */
+/* SPODNÍ SEKCE – vznášející se efekt + glow */
 #skills, #projects, #contact {
   z-index: 2; /* nad bublinami a canvas */
-  box-shadow: 0 10px 35px rgba(29,185,84,0.25); /* jemný glow */
+  box-shadow: 0 10px 35px rgba(29,185,84,0.25);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
-  animation: float-section 12s ease-in-out infinite;
 }
 
 #skills:hover, #projects:hover, #contact:hover {
@@ -176,9 +159,14 @@ a:hover {
   box-shadow: 0 20px 60px rgba(29,185,84,0.45);
 }
 
+/* Float animace pro dynamiku */
 @keyframes float-section {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-8px); }
+}
+
+#skills, #projects, #contact {
+  animation: float-section 12s ease-in-out infinite;
 }
 
 /* MOBIL */
@@ -186,3 +174,4 @@ a:hover {
   #hero h1 { font-size: 2.4rem; }
   h2 { font-size: 1.6rem; }
 }
+
