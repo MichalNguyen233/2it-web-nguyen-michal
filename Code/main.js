@@ -1,18 +1,15 @@
-// Canvas a neon efekt
 const canvas = document.getElementById("draw-canvas");
 const ctx = canvas.getContext("2d");
 ctx.globalCompositeOperation = "lighter";
 
-// Resize canvas
 function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
 }
 resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
+addEventListener("resize", resizeCanvas);
 
-let lastX = null;
-let lastY = null;
+let lastX = null, lastY = null;
 
 function draw(x, y) {
   if (lastX === null) {
@@ -20,7 +17,7 @@ function draw(x, y) {
     lastY = y;
     return;
   }
-  ctx.strokeStyle = "rgba(29, 185, 84, 0.25)";
+  ctx.strokeStyle = "rgba(29,185,84,0.25)";
   ctx.lineWidth = 2;
   ctx.lineCap = "round";
   ctx.beginPath();
@@ -31,15 +28,23 @@ function draw(x, y) {
   lastY = y;
 }
 
-// Myš a touch
-window.addEventListener("mousemove", e => draw(e.clientX, e.clientY));
-window.addEventListener("touchmove", e => draw(e.touches[0].clientX, e.touches[0].clientY));
-window.addEventListener("mouseout", () => { lastX = lastY = null; });
+addEventListener("mousemove", e => draw(e.clientX, e.clientY));
+addEventListener("touchmove", e => draw(e.touches[0].clientX, e.touches[0].clientY));
+addEventListener("mouseout", () => lastX = lastY = null);
 
-// Fade-out čar
 setInterval(() => {
   ctx.fillStyle = "rgba(0,0,0,0.05)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 }, 40);
 
+/* SCROLL PARALLAX */
+const sections = document.querySelectorAll("section");
+
+addEventListener("scroll", () => {
+  const y = scrollY;
+  sections.forEach((sec, i) => {
+    const offset = i % 2 === 0 ? y * 0.04 : y * -0.04;
+    sec.style.transform = `translateX(${offset}px)`;
+  });
+});
 
