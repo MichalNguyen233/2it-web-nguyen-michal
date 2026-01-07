@@ -1,7 +1,11 @@
-ctx.globalCompositeOperation = "lighter";
+// Získání canvasu a kontextu
 const canvas = document.getElementById("draw-canvas");
 const ctx = canvas.getContext("2d");
 
+// Nastavení blend módu pro neon efekt
+ctx.globalCompositeOperation = "lighter";
+
+// Funkce pro velikost canvasu
 function resizeCanvas() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -9,9 +13,11 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
+// Proměnné pro poslední pozici kurzoru
 let lastX = null;
 let lastY = null;
 
+// Funkce kreslení
 function draw(x, y) {
   if (lastX === null) {
     lastX = x;
@@ -32,20 +38,22 @@ function draw(x, y) {
   lastY = y;
 }
 
-window.addEventListener("mousemove", (e) => {
-  draw(e.clientX, e.clientY);
-});
-
+// Události pro kreslení myší a dotykem
+window.addEventListener("mousemove", (e) => draw(e.clientX, e.clientY));
 window.addEventListener("touchmove", (e) => {
   const touch = e.touches[0];
   draw(touch.clientX, touch.clientY);
 });
 
+// Reset pozice při odchodu kurzoru
 window.addEventListener("mouseout", () => {
   lastX = lastY = null;
 });
+
+// Pomalé mazání čar pro efekt fade-out
 setInterval(() => {
   ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 }, 40);
+
 
