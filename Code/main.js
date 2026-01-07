@@ -1,3 +1,4 @@
+ctx.globalCompositeOperation = "lighter";
 const canvas = document.getElementById("draw-canvas");
 const ctx = canvas.getContext("2d");
 
@@ -43,3 +44,8 @@ window.addEventListener("touchmove", (e) => {
 window.addEventListener("mouseout", () => {
   lastX = lastY = null;
 });
+setInterval(() => {
+  ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+}, 40);
+
