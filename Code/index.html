@@ -3,66 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfolio Michal Nguyen – Student IT, HTML, CSS, JavaScript">
+  <meta name="description" content="Portfolio Michal Nguyen – Student IT">
   <title>Michal Nguyen | Portfolio</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <!-- AOS Animations -->
+
+  <!-- AOS -->
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
 <body>
-  <!-- CANVAS PRO KRESLENÍ -->
-  <canvas id="draw-canvas"></canvas>
 
-  <!-- HERO -->
-  <section id="hero">
-    <h1>Michal Nguyen</h1>
-    <p>Student IT | HTML • CSS • JavaScript</p>
-  </section>
+<canvas id="draw-canvas"></canvas>
 
-  <!-- O MNĚ -->
-  <section id="about" data-aos="fade-up">
-    <h2>O mně</h2>
-    <p>Jsem student IT, zaměřený na webový vývoj a moderní technologie. Baví mě tvořit čistý a funkční kód a neustále se učit nové věci.</p>
-  </section>
+<section id="hero">
+  <h1>Michal Nguyen</h1>
+  <p>Student IT | HTML • CSS • JavaScript</p>
+</section>
 
-  <!-- DOVEDNOSTI -->
-  <section id="skills" data-aos="fade-up">
-    <h2>Dovednosti</h2>
-    <ul class="skills-list">
-      <li>HTML – pokročilý</li>
-      <li>CSS – pokročilý</li>
-      <li>JavaScript – středně pokročilý</li>
-    </ul>
-  </section>
+<section id="about" data-aos="fade-right">
+  <h2>O mně</h2>
+  <p>Jsem student IT, zaměřený na webový vývoj a moderní technologie.</p>
+</section>
 
-  <!-- PROJEKTY -->
-  <section id="projects" data-aos="fade-up">
-    <h2>Projekty</h2>
-    <div class="project-card">
-      <h3>Landing Page Experiment</h3>
-      <p>Jednostránkový web s moderním designem, vytvořený pro školní projekt.</p>
-    </div>
-    <div class="project-card">
-      <h3>Mini Game Prototype</h3>
-      <p>Jednoduchá HTML/JS hra, která ukazuje základy interaktivních prvků.</p>
-    </div>
-  </section>
+<section id="skills" data-aos="fade-left">
+  <h2>Dovednosti</h2>
+  <ul class="skills-list">
+    <li>HTML – pokročilý</li>
+    <li>CSS – pokročilý</li>
+    <li>JavaScript – středně pokročilý</li>
+  </ul>
+</section>
 
-  <!-- KONTAKT -->
-  <section id="contact" data-aos="fade-up">
-    <h2>Kontakt</h2>
-    <p>Email: <a href="mailto:michal.nguyen@email.cz">michal.nguyen@email.cz</a></p>
-    <p>GitHub: <a href="https://github.com/michalnguyen233" target="_blank">github.com/michalnguyen</a></p>
-  </section>
+<section id="projects" data-aos="zoom-in">
+  <h2>Projekty</h2>
 
-  <!-- JS -->
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script src="main.js"></script>
-  <script>
-    AOS.init();
-  </script>
+  <div class="project-card" data-aos="fade-right" data-aos-delay="100">
+    <h3>Landing Page Experiment</h3>
+    <p>Moderní jednostránkový web.</p>
+  </div>
+
+  <div class="project-card" data-aos="fade-left" data-aos-delay="300">
+    <h3>Mini Game Prototype</h3>
+    <p>Jednoduchá HTML/JS hra.</p>
+  </div>
+</section>
+
+<section id="contact" data-aos="fade-up">
+  <h2>Kontakt</h2>
+  <p>Email: <a href="mailto:michal.nguyen@email.cz">michal.nguyen@email.cz</a></p>
+  <p>GitHub: <a href="https://github.com/michalnguyen233" target="_blank">github.com/michalnguyen233</a></p>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="main.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    once: true,
+    easing: "ease-out-cubic"
+  });
+</script>
 </body>
 </html>
-
 
