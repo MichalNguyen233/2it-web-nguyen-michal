@@ -1,59 +1,88 @@
-/* Reset & základ *//* Reset & základ */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* POZADÍ STRÁNKY */
 body {
   font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at top, #1a1a1a, #0f0f0f);
+  background:
+    radial-gradient(circle at 10% 20%, rgba(29,185,84,0.15), transparent 40%),
+    radial-gradient(circle at 90% 30%, rgba(29,185,84,0.1), transparent 45%),
+    linear-gradient(180deg, #0f0f0f, #121212);
   color: #E0E0E0;
   line-height: 1.7;
+  overflow-x: hidden;
 }
 
-/* Sekce */
+/* DEKORATIVNÍ TVARY */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  background: rgba(29,185,84,0.15);
+  filter: blur(120px);
+  z-index: -1;
+}
+
+body::before {
+  top: -100px;
+  left: -100px;
+}
+
+body::after {
+  bottom: -100px;
+  right: -100px;
+}
+
+/* SEKCE */
 section {
-  padding: 100px 20px;
-  text-align: center;
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 80px auto;
+  padding: 80px 30px;
+  text-align: center;
+
+  background: rgba(30, 30, 30, 0.55);
+  backdrop-filter: blur(12px);
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* HERO */
 #hero {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  background: none;
+  border: none;
+  backdrop-filter: none;
 }
 
 #hero h1 {
   font-size: 3.5rem;
-  margin-bottom: 15px;
   color: #1DB954;
-  letter-spacing: 1px;
 }
 
 #hero p {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   opacity: 0.85;
 }
 
 /* NADPISY */
 h2 {
+  color: #1DB954;
   font-size: 2.2rem;
   margin-bottom: 40px;
-  color: #1DB954;
   position: relative;
 }
 
 h2::after {
   content: "";
-  width: 60px;
+  width: 70px;
   height: 4px;
-  background: #1DB954;
+  background: linear-gradient(90deg, #1DB954, #4ade80);
   display: block;
   margin: 15px auto 0;
   border-radius: 10px;
@@ -69,71 +98,54 @@ h2::after {
 }
 
 .skills-list li {
-  background: #1E1E1E;
+  background: rgba(255, 255, 255, 0.05);
   padding: 12px 22px;
   border-radius: 30px;
-  font-size: 1rem;
-  border: 1px solid rgba(29, 185, 84, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(29,185,84,0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .skills-list li:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 15px rgba(29, 185, 84, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 0 20px rgba(29,185,84,0.4);
 }
 
 /* PROJEKTY */
 .project-card {
-  background-color: #1E1E1E;
+  background: rgba(255, 255, 255, 0.04);
   padding: 30px;
+  border-radius: 18px;
   margin: 25px auto;
-  border-radius: 16px;
   max-width: 650px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.project-card h3 {
-  margin-bottom: 10px;
-  color: #ffffff;
-}
-
-.project-card p {
-  opacity: 0.85;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .project-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 15px 40px rgba(29, 185, 84, 0.35);
+  box-shadow: 0 20px 40px rgba(29,185,84,0.35);
 }
 
-/* KONTAKT */
-#contact p {
-  margin-bottom: 10px;
-}
-
-#contact a {
+/* ODKAZY */
+a {
   color: #1DB954;
   text-decoration: none;
-  font-weight: 500;
 }
 
-#contact a:hover {
+a:hover {
   text-decoration: underline;
 }
 
-/* RESPONSIVITA */
+/* RESPONSIVE */
 @media (max-width: 768px) {
-  #hero h1 {
-    font-size: 2.4rem;
-  }
-
-  h2 {
-    font-size: 1.6rem;
-  }
-
   section {
-    padding: 70px 15px;
+    margin: 40px 15px;
+    padding: 60px 20px;
+  }
+
+  #hero h1 {
+    font-size: 2.3rem;
   }
 }
+
 
 
