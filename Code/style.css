@@ -20,7 +20,6 @@ body {
   pointer-events: none;
 }
 
-/* --- SEKCE A POHYB --- */
 section {
   max-width: 900px;
   margin: 120px auto;
@@ -37,7 +36,6 @@ section {
   will-change: transform;
 }
 
-/* --- HERO A ANIMACE JMÉNA --- */
 #hero {
   min-height: 100vh;
   display: flex;
@@ -53,16 +51,9 @@ section {
   color: #1DB954;
   text-shadow: 0 0 25px rgba(29, 185, 84, 0.5);
   display: inline-block;
-  /* Animace houpání jména */
-  animation: floatingName 5s ease-in-out infinite alternate;
+  will-change: transform;
 }
 
-@keyframes floatingName {
-  from { transform: translateY(0); text-shadow: 0 0 20px rgba(29, 185, 84, 0.4); }
-  to { transform: translateY(-25px); text-shadow: 0 0 45px rgba(29, 185, 84, 0.8); }
-}
-
-/* --- DOVEDNOSTI A PROJEKTY (GLOW EFEKT) --- */
 h2 { font-size: 2.5rem; color: #1DB954; margin-bottom: 40px; }
 
 .skills-list { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; list-style: none; }
@@ -89,14 +80,13 @@ h2 { font-size: 2.5rem; color: #1DB954; margin-bottom: 40px; }
   border-radius: 25px;
   margin: 20px auto;
   border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.4s ease;
 }
 
 .project-card:hover {
   background: rgba(29, 185, 84, 0.05);
   border-color: rgba(29, 185, 84, 0.4);
   box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px rgba(29, 185, 84, 0.2);
-  transform: translateY(-10px);
 }
 
 a { color: #1DB954; text-decoration: none; font-weight: bold; }
