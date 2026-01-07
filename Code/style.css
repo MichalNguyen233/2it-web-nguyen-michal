@@ -205,3 +205,14 @@ a:hover {
     font-size: 1.6rem;
   }
 }
+#draw-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;           /* za obsahem */
+  pointer-events: none; /* neblokuje klikání */
+}
+
+
