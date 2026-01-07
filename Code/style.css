@@ -1,4 +1,6 @@
-/* RESET */
+/* =========================
+   RESET
+========================= */
 * {
   margin: 0;
   padding: 0;
@@ -11,38 +13,38 @@
 body {
   font-family: 'Poppins', sans-serif;
   background:
-    radial-gradient(circle at 10% 20%, rgba(29,185,84,0.15), transparent 40%),
-    radial-gradient(circle at 90% 30%, rgba(29,185,84,0.1), transparent 45%),
+    radial-gradient(circle at 10% 20%, rgba(29,185,84,0.18), transparent 40%),
+    radial-gradient(circle at 90% 30%, rgba(29,185,84,0.12), transparent 45%),
     linear-gradient(180deg, #0f0f0f, #121212);
   color: #E0E0E0;
   line-height: 1.7;
   overflow-x: hidden;
 }
 
-/* DEKORATIVNÍ ROZMAZANÉ TVARY */
+/* ROZMAZANÉ TVARY V POZADÍ */
 body::before,
 body::after {
   content: "";
   position: fixed;
-  width: 400px;
-  height: 400px;
-  background: rgba(29,185,84,0.15);
-  filter: blur(120px);
+  width: 450px;
+  height: 450px;
+  background: rgba(29,185,84,0.18);
+  filter: blur(140px);
   z-index: -1;
 }
 
 body::before {
-  top: -100px;
-  left: -100px;
+  top: -120px;
+  left: -120px;
 }
 
 body::after {
-  bottom: -100px;
-  right: -100px;
+  bottom: -120px;
+  right: -120px;
 }
 
 /* =========================
-   SEKCE (GLASS EFEKT)
+   SEKCE – GLASS EFFECT
 ========================= */
 section {
   max-width: 1000px;
@@ -50,10 +52,10 @@ section {
   padding: 80px 30px;
   text-align: center;
 
-  background: rgba(30, 30, 30, 0.55);
-  backdrop-filter: blur(12px);
+  background: rgba(30, 30, 30, 0.6);
+  backdrop-filter: blur(14px);
   border-radius: 25px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 /* =========================
@@ -72,27 +74,29 @@ section {
 }
 
 #hero h1 {
-  font-size: 3.5rem;
+  font-size: 3.6rem;
   color: #1DB954;
   margin-bottom: 15px;
-  animation: float 7s ease-in-out infinite;
+  animation: float 8s ease-in-out infinite;
+  will-change: transform;
 }
 
 #hero p {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   opacity: 0.85;
-  animation: float 9s ease-in-out infinite;
+  animation: float 10s ease-in-out infinite;
+  will-change: transform;
 }
 
 /* =========================
-   PLUJÍCÍ ANIMACE
+   PLUJÍCÍ ANIMACE (VIDITELNÁ)
 ========================= */
 @keyframes float {
   0% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-18px);
   }
   100% {
     transform: translateY(0);
@@ -140,14 +144,14 @@ h2::after {
 
 .skills-list li:hover {
   transform: translateY(-4px);
-  box-shadow: 0 0 20px rgba(29,185,84,0.4);
+  box-shadow: 0 0 22px rgba(29,185,84,0.45);
 }
 
 /* =========================
    PROJEKTY
 ========================= */
 .project-card {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.05);
   padding: 30px;
   border-radius: 18px;
   margin: 25px auto;
@@ -165,7 +169,7 @@ h2::after {
 
 .project-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(29,185,84,0.35);
+  box-shadow: 0 22px 45px rgba(29,185,84,0.4);
 }
 
 /* =========================
@@ -194,14 +198,10 @@ a:hover {
   }
 
   #hero h1 {
-    font-size: 2.3rem;
+    font-size: 2.4rem;
   }
 
   h2 {
     font-size: 1.6rem;
   }
 }
-
-
-
-
