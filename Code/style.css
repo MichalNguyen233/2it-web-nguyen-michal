@@ -44,6 +44,19 @@ body::after {
 }
 
 /* =========================
+   CANVAS KRESLENÍ
+========================= */
+#draw-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;           
+  pointer-events: none;
+}
+
+/* =========================
    SEKCE – GLASS EFFECT
 ========================= */
 section {
@@ -63,14 +76,16 @@ section {
 ========================= */
 #hero {
   min-height: 100vh;
-  background: none;
-  border: none;
-  backdrop-filter: none;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  background: rgba(30, 30, 30, 0.4); /* lehký kontrast pro viditelnost textu */
+  border-radius: 20px;
+  padding: 50px;
+  position: relative;
+  z-index: 0;
 }
 
 #hero h1 {
@@ -78,29 +93,23 @@ section {
   color: #1DB954;
   margin-bottom: 15px;
   animation: float 8s ease-in-out infinite;
-  will-change: transform;
+  text-shadow: 0 0 15px rgba(29,185,84,0.7);
 }
 
 #hero p {
   font-size: 1.25rem;
   opacity: 0.85;
   animation: float 10s ease-in-out infinite;
-  will-change: transform;
+  text-shadow: 0 0 10px rgba(29,185,84,0.6);
 }
 
 /* =========================
-   PLUJÍCÍ ANIMACE (VIDITELNÁ)
+   PLUJÍCÍ ANIMACE
 ========================= */
 @keyframes float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-18px);
-  }
-  100% {
-    transform: translateY(0);
-  }
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-18px); }
+  100% { transform: translateY(0); }
 }
 
 /* =========================
@@ -169,50 +178,4 @@ h2::after {
 
 .project-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 22px 45px rgba(29,185,84,0.4);
-}
-
-/* =========================
-   KONTAKT & ODKAZY
-========================= */
-#contact p {
-  margin-bottom: 10px;
-}
-
-a {
-  color: #1DB954;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* =========================
-   RESPONSIVITA
-========================= */
-@media (max-width: 768px) {
-  section {
-    margin: 40px 15px;
-    padding: 60px 20px;
-  }
-
-  #hero h1 {
-    font-size: 2.4rem;
-  }
-
-  h2 {
-    font-size: 1.6rem;
-  }
-}
-#draw-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -2;           /* za obsahem */
-  pointer-events: none; /* neblokuje klikání */
-}
-
-
+  box-shadow: 0 22px 45px rgba(29,185,84
