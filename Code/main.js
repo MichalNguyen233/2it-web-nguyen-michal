@@ -60,27 +60,35 @@ function fadeCanvas(){
 }
 fadeCanvas();
 
-/* Scroll parallax */
-const allSections = document.querySelectorAll("section");
-/* Vyber spodní sekce – od #skills dolů */
-const scrollSections = Array.from(allSections).filter(sec => 
-  ["skills","projects","contact"].includes(sec.id)
-);
+/* Scroll parallax pro spodní sekce */
+const scrollSections = [
+  document.getElementById("skills"),
+  document.getElementById("projects"),
+  document.getElementById("contact")
+];
+
+/* Přidej bubliny do HTML dynamicky */
+const bubbleLeft = document.createElement("div");
+bubbleLeft.className = "bubble bubble-left";
+document.body.appendChild(bubbleLeft);
+
+const bubbleRight = document.createElement("div");
+bubbleRight.className = "bubble bubble-right";
+document.body.appendChild(bubbleRight);
 
 window.addEventListener("scroll", () => {
   const scrollY = window.scrollY;
 
-  /* Horní sekce mohou mít mírný pohyb (volitelné) */
-  allSections.forEach((sec,i) => {
-    if(!scrollSections.includes(sec)){
-      const offset = i % 2 === 0 ? scrollY * 0.02 : scrollY * -0.02;
-      sec.style.transform = `translateX(${offset}px)`;
-    }
+  /* Spodní sekce – každá mírně odlišný pohyb pro efekt dynamiky */
+  scrollSections.forEach((sec, i) => {
+    let offsetX = 0;
+    let offsetY = scrollY * 0.06; // synchronní pohyb po Y
+    if(i % 2 === 0) offsetX = scrollY * 0.03; // jedna mírně doprava
+    else offsetX = -scrollY * 0.03; // druhá mírně doleva
+    sec.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
   });
 
-  /* Spodní sekce – synchronizovaný pohyb */
-  scrollSections.forEach(sec => {
-    const offset = scrollY * 0.08; // stejný poměr pro všechny
-    sec.style.transform = `translateY(${offset}px)`; // pohyb po Y
-  });
+  /* Bubliny reagují na scroll – jedna zprava, druhá zleva */
+  bubbleLeft.style.transform = `translate(${scrollY * 0.2}px, ${scrollY * 0.05}px)`;
+  bubbleRight.style.transform = `translate(${-scrollY * 0.25}px, ${-scrollY * 0.1}px)`;
 });
