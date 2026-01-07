@@ -5,28 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Portfolio Michal Nguyen – Student IT">
   <title>Michal Nguyen | Portfolio</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-
-  <!-- AOS -->
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
 <body>
 
 <canvas id="draw-canvas"></canvas>
 
-<section id="hero">
+<section id="hero" class="is-visible">
   <h1>Michal Nguyen</h1>
   <p>Student IT | HTML • CSS • JavaScript</p>
 </section>
 
-<section id="about" data-aos="fade-right">
+<section id="about">
   <h2>O mně</h2>
   <p>Jsem student IT, zaměřený na webový vývoj a moderní technologie.</p>
 </section>
 
-<section id="skills" data-aos="fade-left">
+<section id="skills">
   <h2>Dovednosti</h2>
   <ul class="skills-list">
     <li>HTML – pokročilý</li>
@@ -35,34 +31,24 @@
   </ul>
 </section>
 
-<section id="projects" data-aos="zoom-in">
+<section id="projects">
   <h2>Projekty</h2>
-
-  <div class="project-card" data-aos="fade-right" data-aos-delay="100">
+  <div class="project-card">
     <h3>Landing Page Experiment</h3>
     <p>Moderní jednostránkový web.</p>
   </div>
-
-  <div class="project-card" data-aos="fade-left" data-aos-delay="300">
+  <div class="project-card">
     <h3>Mini Game Prototype</h3>
     <p>Jednoduchá HTML/JS hra.</p>
   </div>
 </section>
 
-<section id="contact" data-aos="fade-up">
+<section id="contact">
   <h2>Kontakt</h2>
   <p>Email: <a href="mailto:michal.nguyen@email.cz">michal.nguyen@email.cz</a></p>
   <p>GitHub: <a href="https://github.com/michalnguyen233" target="_blank">github.com/michalnguyen233</a></p>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script src="main.js"></script>
-<script>
-  AOS.init({
-    duration: 1000,
-    once: true,
-    easing: "ease-out-cubic"
-  });
-</script>
 </body>
 </html>
