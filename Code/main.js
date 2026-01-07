@@ -2,10 +2,10 @@
 const canvas = document.getElementById("draw-canvas");
 const ctx = canvas.getContext("2d");
 
-// Nastavení blend módu pro neon efekt
+// Neon efekt
 ctx.globalCompositeOperation = "lighter";
 
-// Funkce pro velikost canvasu
+// Resize canvas
 function resizeCanvas() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -38,22 +38,20 @@ function draw(x, y) {
   lastY = y;
 }
 
-// Události pro kreslení myší a dotykem
+// Události myš + touch
 window.addEventListener("mousemove", (e) => draw(e.clientX, e.clientY));
 window.addEventListener("touchmove", (e) => {
   const touch = e.touches[0];
   draw(touch.clientX, touch.clientY);
 });
 
-// Reset pozice při odchodu kurzoru
+// Reset pozice
 window.addEventListener("mouseout", () => {
   lastX = lastY = null;
 });
 
-// Pomalé mazání čar pro efekt fade-out
+// Pomalu mazání čar pro fade-out efekt
 setInterval(() => {
   ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 }, 40);
-
-
