@@ -6,32 +6,12 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background:
-    radial-gradient(circle at 10% 20%, rgba(29,185,84,0.18), transparent 40%),
-    radial-gradient(circle at 90% 30%, rgba(29,185,84,0.12), transparent 45%),
-    linear-gradient(180deg, #0f0f0f, #121212);
+  background: #0f0f0f linear-gradient(180deg, #0f0f0f, #121212);
   color: #e0e0e0;
   overflow-x: hidden;
-  line-height: 1.6;
 }
 
-/* POHYBLIVÉ BUBLINY NA POZADÍ */
-body::before, body::after {
-  content: "";
-  position: fixed;
-  width: 450px;
-  height: 450px;
-  background: rgba(29,185,84,0.18);
-  filter: blur(140px);
-  z-index: -1;
-}
-body::before { top: -120px; left: -120px; animation: drift-left 25s ease-in-out infinite alternate; }
-body::after { bottom: -120px; right: -120px; animation: drift-right 30s ease-in-out infinite alternate; }
-
-@keyframes drift-left { to { transform: translate(140px, 80px); } }
-@keyframes drift-right { to { transform: translate(-160px, -120px); } }
-
-/* CANVAS PRO KRESLENÍ MYŠÍ */
+/* Kreslicí plátno na pozadí */
 #draw-canvas {
   position: fixed;
   inset: 0;
@@ -39,23 +19,22 @@ body::after { bottom: -120px; right: -120px; animation: drift-right 30s ease-in-
   pointer-events: none;
 }
 
-/* SEKCE - REAGUJÍCÍ NA SCROLL */
+/* Základní styl sekcí */
 section {
   max-width: 900px;
-  margin: 150px auto;
+  margin: 100px auto;
   padding: 80px 40px;
   text-align: center;
-  background: rgba(30,30,30,0.45);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
+  background: rgba(30,30,30,0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 30px;
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.06);
   position: relative;
   z-index: 1;
-  
-  /* Plynulost pohybu */
-  transition: transform 0.2s ease-out, opacity 0.6s ease-out;
-  will-change: transform, opacity;
+  /* DŮLEŽITÉ: Žádná transition u transformu pro okamžitou reakci */
+  transition: opacity 0.6s ease;
+  will-change: transform;
 }
 
 #hero {
@@ -71,32 +50,20 @@ section {
 #hero h1 {
   font-size: 4rem;
   color: #1DB954;
-  text-shadow: 0 0 30px rgba(29,185,84,0.6);
-  margin-bottom: 10px;
+  text-shadow: 0 0 25px rgba(29,185,84,0.5);
 }
 
-/* OSTATNÍ PRVKY */
 h2 { font-size: 2.5rem; color: #1DB954; margin-bottom: 30px; }
-h2::after {
-  content: ""; width: 60px; height: 4px; background: #1DB954;
-  display: block; margin: 15px auto 0; border-radius: 10px;
-}
 
 .skills-list { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; list-style: none; }
-.skills-list li { 
-  padding: 10px 20px; background: rgba(255,255,255,0.05); 
-  border-radius: 20px; border: 1px solid rgba(29,185,84,0.3); 
-}
+.skills-list li { padding: 12px 24px; border-radius: 25px; border: 1px solid rgba(29,185,84,0.4); background: rgba(0,0,0,0.2); }
 
-.project-card {
-  background: rgba(255,255,255,0.03); padding: 25px; 
-  border-radius: 20px; margin-top: 20px; border: 1px solid rgba(255,255,255,0.05);
-}
+.project-card { background: rgba(255,255,255,0.04); padding: 30px; border-radius: 20px; margin-top: 25px; border: 1px solid rgba(255,255,255,0.05); }
 
-a { color: #1DB954; text-decoration: none; font-weight: 600; }
+a { color: #1DB954; text-decoration: none; font-weight: bold; }
 
-/* Mobilní optimalizace - omezíme pohyb, aby to "neuskakovalo" pod prstem */
+/* Vypnutí pohybu na mobilu pro lepší stabilitu */
 @media (max-width: 768px) {
-  section { margin: 80px 20px; padding: 40px 20px; transform: none !important; opacity: 1 !important; }
-  #hero h1 { font-size: 2.5rem; }
+  section { transform: none !important; margin: 60px 20px; padding: 40px 20px; opacity: 1 !important; }
+  #hero h1 { font-size: 2.8rem; }
 }
