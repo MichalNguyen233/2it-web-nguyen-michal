@@ -8,7 +8,7 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-/* NEON MIX */
+/* NEON MÓD */
 ctx.globalCompositeOperation = "lighter";
 
 let lastX = null;
@@ -25,22 +25,22 @@ function draw(x, y) {
     return;
   }
 
-  // vnitřní čára
+  // vnitřní linka
   ctx.beginPath();
-  ctx.strokeStyle = "rgba(29,185,84,0.55)";
-  ctx.lineWidth = 1.6;
+  ctx.strokeStyle = "rgba(29,185,84,0.7)";
+  ctx.lineWidth = 1.5;
   ctx.lineCap = "round";
-  ctx.shadowColor = "rgba(29,185,84,0.9)";
-  ctx.shadowBlur = 10;
+  ctx.shadowColor = "rgba(29,185,84,1)";
+  ctx.shadowBlur = 12;
   ctx.moveTo(lastX, lastY);
   ctx.lineTo(x, y);
   ctx.stroke();
 
-  // glow aura
+  // vnější glow
   ctx.beginPath();
-  ctx.strokeStyle = "rgba(29,185,84,0.25)";
+  ctx.strokeStyle = "rgba(29,185,84,0.35)";
   ctx.lineWidth = 4;
-  ctx.shadowBlur = 22;
+  ctx.shadowBlur = 26;
   ctx.moveTo(lastX, lastY);
   ctx.lineTo(x, y);
   ctx.stroke();
@@ -57,18 +57,25 @@ window.addEventListener("mouseout", () => {
   lastY = null;
 });
 
-/* PLYNULÉ ČIŠTĚNÍ */
+/* TVRDÉ MAZÁNÍ */
 function fadeCanvas() {
   const elapsed = Date.now() - lastDrawTime;
 
-  const fade = elapsed > 3000 ? 0.2 : 0.04;
-
-  ctx.shadowBlur = 0;
-  ctx.fillStyle = `rgba(0, 0, 0, ${fade})`;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  if (elapsed > 3000) {
+    // PO 3s – rychlé vymazání
+    ctx.globalCompositeOperation = "source-over";
+    ctx.fillStyle = "rgba(0,0,0,0.35)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.globalCompositeOperation = "lighter";
+  } else {
+    // DO 3s – jemný trail
+    ctx.globalCompositeOperation = "source-over";
+    ctx.fillStyle = "rgba(0,0,0,0.08)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.globalCompositeOperation = "lighter";
+  }
 
   requestAnimationFrame(fadeCanvas);
 }
 
 fadeCanvas();
-
