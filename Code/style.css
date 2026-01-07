@@ -33,15 +33,8 @@ body::after {
   z-index: -1;
 }
 
-body::before {
-  top: -120px;
-  left: -120px;
-}
-
-body::after {
-  bottom: -120px;
-  right: -120px;
-}
+body::before { top: -120px; left: -120px; }
+body::after { bottom: -120px; right: -120px; }
 
 /* =========================
    CANVAS KRESLENÍ
@@ -52,7 +45,7 @@ body::after {
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: -2;           
+  z-index: 0; /* canvas pod vizitkou */
   pointer-events: none;
 }
 
@@ -81,11 +74,11 @@ section {
   justify-content: center;
   align-items: center;
 
-  background: rgba(30, 30, 30, 0.4); /* lehký kontrast pro viditelnost textu */
+  background: rgba(0, 0, 0, 0.6); /* silnější kontrast, vizitka vidět */
   border-radius: 20px;
   padding: 50px;
   position: relative;
-  z-index: 0;
+  z-index: 1; /* hero nad canvasem */
 }
 
 #hero h1 {
@@ -93,14 +86,14 @@ section {
   color: #1DB954;
   margin-bottom: 15px;
   animation: float 8s ease-in-out infinite;
-  text-shadow: 0 0 15px rgba(29,185,84,0.7);
+  text-shadow: 0 0 20px rgba(29,185,84,0.8);
 }
 
 #hero p {
   font-size: 1.25rem;
-  opacity: 0.85;
+  opacity: 0.95;
   animation: float 10s ease-in-out infinite;
-  text-shadow: 0 0 10px rgba(29,185,84,0.6);
+  text-shadow: 0 0 15px rgba(29,185,84,0.7);
 }
 
 /* =========================
@@ -168,14 +161,29 @@ h2::after {
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.project-card h3 {
-  margin-bottom: 10px;
-}
-
-.project-card p {
-  opacity: 0.85;
-}
+.project-card h3 { margin-bottom: 10px; }
+.project-card p { opacity: 0.85; }
 
 .project-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 22px 45px rgba(29,185,84
+  box-shadow: 0 22px 45px rgba(29,185,84,0.4);
+}
+
+/* =========================
+   KONTAKT & ODKAZY
+========================= */
+#contact p { margin-bottom: 10px; }
+a { color: #1DB954; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* =========================
+   RESPONSIVITA
+========================= */
+@media (max-width: 768px) {
+  section {
+    margin: 40px 15px;
+    padding: 60px 20px;
+  }
+  #hero h1 { font-size: 2.4rem; }
+  h2 { font-size: 1.6rem; }
+}
