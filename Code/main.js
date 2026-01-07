@@ -1,86 +1,81 @@
-/** 1. NEONOVÝ CANVAS EFEKT **/
+/** 1. KRESLENÍ NA CANVAS **/
 const canvas = document.getElementById("draw-canvas");
 const ctx = canvas.getContext("2d");
 
-function resizeCanvas() {
+function resize() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 }
-window.addEventListener("resize", resizeCanvas);
-resizeCanvas();
+window.addEventListener("resize", resize);
+resize();
 
-ctx.globalCompositeOperation = "lighter";
-let lastX = null, lastY = null, lastDrawTime = Date.now();
+let lastX = null, lastY = null, lastTime = Date.now();
 
 function draw(x, y) {
-  lastDrawTime = Date.now();
+  lastTime = Date.now();
   if (lastX === null) { lastX = x; lastY = y; return; }
-
   ctx.beginPath();
-  ctx.strokeStyle = "rgba(29,185,84,0.5)";
+  ctx.strokeStyle = "rgba(29,185,84,0.6)";
   ctx.lineWidth = 2;
   ctx.lineCap = "round";
-  ctx.shadowColor = "rgba(29,185,84,0.8)";
   ctx.shadowBlur = 12;
+  ctx.shadowColor = "#1DB954";
   ctx.moveTo(lastX, lastY);
   ctx.lineTo(x, y);
   ctx.stroke();
-
   lastX = x; lastY = y;
 }
 
 window.addEventListener("mousemove", e => draw(e.clientX, e.clientY));
 window.addEventListener("mouseout", () => { lastX = null; lastY = null; });
 
-function fadeCanvas() {
-  const elapsed = Date.now() - lastDrawTime;
-  const fade = elapsed > 2000 ? 0.15 : 0.03; 
+function fade() {
+  // Plynulé vytrácení čar
+  const isIdle = Date.now() - lastTime > 2000;
+  ctx.fillStyle = `rgba(0, 0, 0, ${isIdle ? 0.15 : 0.04})`;
   ctx.shadowBlur = 0;
-  ctx.fillStyle = `rgba(0, 0, 0, ${fade})`;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  requestAnimationFrame(fadeCanvas);
+  requestAnimationFrame(fade);
 }
-fadeCanvas();
+fade();
 
 
-/** 2. DYNAMICKÝ POHYB SEKCÍ PODLE SCROLLU **/
+/** 2. ULTRA-CITLIVÝ POHYB SEKCÍ (FIXNÍ SMYČKA) **/
 const sections = document.querySelectorAll('section');
 
-function updateSections() {
-  const windowCenter = window.scrollY + (window.innerHeight / 2);
+function scrollUpdate() {
+  const scrollY = window.scrollY;
+  const vh = window.innerHeight;
+  const centerOfScreen = scrollY + (vh / 2);
 
   sections.forEach((section, index) => {
-    // Přeskočíme Hero sekci, aby zůstala víceméně v klidu
-    if (section.id === 'hero') return;
+    if (section.id === 'hero') return; // Hero neuhýbá
 
-    const sectionRect = section.getBoundingClientRect();
     const sectionTop = section.offsetTop;
     const sectionHeight = section.offsetHeight;
     const sectionCenter = sectionTop + (sectionHeight / 2);
 
-    // Vzdálenost středu sekce od aktuálního středu obrazovky
-    const distance = windowCenter - sectionCenter;
+    // Vzdálenost středu sekce od středu obrazovky
+    const diff = centerOfScreen - sectionCenter;
 
-    // Síla pohybu - uprav toto číslo pro větší/menší výkyv
-    const intensity = 0.25; 
+    // Citlivost (čím vyšší, tím rychleji sekce "létají")
+    const sensitivity = 0.35;
     
-    // Střídání stran: sudé sekce zprava, liché zleva
+    // Střídání stran
     const direction = index % 2 === 0 ? 1 : -1;
-    let moveX = (distance * intensity) * direction;
+    const moveX = diff * sensitivity * direction;
 
-    // Omezení maximálního posunu (v pixelech)
-    const maxMove = 180;
-    moveX = Math.max(Math.min(moveX, maxMove), -maxMove);
-
-    // Průhlednost - čím dál je od středu, tím je méně vidět
-    const opacity = 1 - Math.abs(distance) / 1000;
-
+    // Aplikace transformace bez jakékoliv prodlevy
     section.style.transform = `translateX(${moveX}px)`;
-    section.style.opacity = Math.max(opacity, 0.4);
+    
+    // Volitelně: Průhlednost podle vzdálenosti
+    const opacity = 1 - Math.abs(diff) / (vh * 1.2);
+    section.style.opacity = Math.max(opacity, 0.3);
   });
+
+  // Udržuje pohyb dokonale plynulý
+  requestAnimationFrame(scrollUpdate);
 }
 
-// Naslouchání na scroll
-window.addEventListener('scroll', updateSections);
-// Spuštění po načtení pro nastavení úvodních pozic
-window.addEventListener('load', updateSections);
+// Spuštění nekonečné smyčky pro kontrolu scrollu
+requestAnimationFrame(scrollUpdate);
